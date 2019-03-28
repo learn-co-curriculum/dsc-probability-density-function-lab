@@ -2,19 +2,19 @@
 # The Probability Density Function - Lab
 
 ## Introduction
-In this lab we will look at building visualizations known as **density plots** to estimate the probability density for a given set of data. 
+In this lab, we will look at building visualizations known as **density plots** to estimate the probability density for a given set of data. 
 
 ## Objectives
 
 You will be able to:
 
-* Calculate the PDF from given dataset containing real valued random variables
+* Calculate the PDF from a given dataset containing real-valued random variables
 * Plot density functions and comment on the shape of the plot
 * Plot density functions using seaborn
 
 ## Let's get started
 
-We shall import all the required libraries for you for this lab. 
+Let's import the necessary libraries for this lab.
 
 
 ```python
@@ -25,9 +25,13 @@ plt.style.use('ggplot')
 import pandas as pd 
 ```
 
-#### Import the dataset 'weight-height.csv' as pandas dataframe . Calculate the mean and standard deviation for weights and heights for male and female individually. 
+## Import the data, and calculate the mean and the standard deviation
 
-Hint : Use your pandas dataframe subsetting skills like loc(), iloc() and groupby()
+- Import the dataset 'weight-height.csv' as a pandas dataframe.
+
+- Next, calculate the mean and standard deviation for weights and heights for men and women individually. You can simply use the pandas `.mean()` and `.std()` to do so.
+
+**Hint**: Use your pandas dataframe subsetting skills like loc(), iloc() and groupby()
 
 
 ```python
@@ -67,23 +71,22 @@ print('Female Weight sd:' ,female_df.Weight.std())
     Female Weight sd: 19.022467805319007
 
 
-#### Plot overlapping normalized histograms for male and female heights - use binsize = 10, set alpha level so that overlap can be visualized
+## Plot histograms (with densities on the y-axis) for male and female heights 
+
+- Make sure to create overlapping plots
+- use binsize = 10, set alpha level so that overlap can be visualized
 
 
 ```python
 binsize = 10
-male_df.Height.plot.hist(bins = binsize, normed = True,  alpha = 0.7, label ="Male Height");
-female_df.Height.plot.hist(bins = binsize, normed = True, alpha = 0.7, label = 'Female Height');
+male_df.Height.plot.hist(bins = binsize, density = True,  alpha = 0.7, label ="Male Height");
+female_df.Height.plot.hist(bins = binsize, density = True, alpha = 0.7, label = 'Female Height');
 plt.legend()
 plt.show()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
 
-
-
-![png](index_files/index_5_1.png)
+![png](index_files/index_5_0.png)
 
 
 
@@ -91,12 +94,17 @@ plt.show()
 # Record your observations - are these inline with your personal observations?
 
 # Men tend to have higher values of heights in general than female
-# The most common region for male and femle heights is between 65 - 67 inches (about 5 and a half feet)
-# MAle heights have a slightly higher spread than female heights, hence the male heigh peak is slightly smaller than female height
+# The most common region for male and female heights is between 65 - 67 inches (about 5 and a half feet)
+# Male heights have a slightly higher spread than female heights, hence the male height peak is slightly smaller than female height
 # Both heights are normally distributed
 ```
 
-#### Write a function density() that takes in a random variable and calculates the density function using `np.hist` and interpolation. The function should return two lists carrying x and y coordinates for plotting the density function
+## Create a density function using interpolation
+
+
+- Write a densit function density() that uses interpolation and takes in a random variable
+- Use`np.hist`
+- The function should return two lists carrying x and y coordinates for plotting the density function
 
 
 ```python
@@ -131,7 +139,7 @@ plt.show()
 ![png](index_files/index_8_0.png)
 
 
-#### Add Overlapping density plots for male and female heights to the histograms plotted earlier
+## Add Overlapping density plots to the histograms plotted earlier
 
 
 ```python
@@ -145,15 +153,11 @@ plt.plot(x,y)
 plt.show()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+
+![png](index_files/index_10_0.png)
 
 
-
-![png](index_files/index_10_1.png)
-
-
-#### Repeat above exerice for male and female weights
+## Repeat above exerice for male and female weights
 
 
 ```python
@@ -167,32 +171,28 @@ plt.plot(x,y)
 plt.show()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+
+![png](index_files/index_12_0.png)
 
 
-
-![png](index_files/index_12_1.png)
-
-
-#### Write your observations in the cell below.
+## Write your observations in the cell below
 
 
 ```python
 # Record your observations - are these inline with your personal observations?
 
 # The patterns and overlap resemble highly with height distributions
-# Man generally have more weight than women
+# Man generally are heavier than women
 # The common region for common weights is around 160 lbs. 
 # Male weight has slightly higher spread than female weight (i.e. more variation)
-# Most females are around 130-140 lbs whereas most men are around 180 pounds. 
+# Most females are around 130-140 lbs whereas most men are around 180 pounds.
 
 #Takeaway
 
 # Weight is more suitable to distinguish between males and females than height
 ```
 
-#### Repeat Above experiments in seaborn and compare with your results. 
+## Repeat Above experiments in seaborn and compare with your results
 
 
 ```python
@@ -203,14 +203,8 @@ plt.title('Comparing Heights')
 plt.show()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
 
-
-
-![png](index_files/index_16_1.png)
+![png](index_files/index_16_0.png)
 
 
 
@@ -222,22 +216,16 @@ plt.title('Comparing Weights')
 plt.show()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
-      warnings.warn("The 'normed' kwarg is deprecated, and has been "
 
-
-
-![png](index_files/index_17_1.png)
+![png](index_files/index_17_0.png)
 
 
 
 ```python
 # Your comments on the two approaches here. 
-# are they similar ? what makes them different if they are ?
+# are they similar? what makes them different if they are?
 ```
 
 ## Summary
 
-In this lesson we saw how to build the probability density curves visually for given datasets and compare on the distribution visually by looking at the spread , center and overlap between data elements. This is a useful EDA technique and can be used to answer some initial questions before embarking on a complex analytics journey.
+In this lesson you learned how to build the probability density curves visually for a given datasets, and compare the distributions visually by looking at the spread, center and overlap. This is a useful EDA technique and can be used to answer some initial questions before embarking on a complex analytics journey.
